@@ -1,0 +1,78 @@
+<div class="container p-5" *ngIf="visibilidadeTabela">
+    <div class="border border-light rounded p-5">
+      <div>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="ExibirFormCadastro()">Novo Produto</button>
+        <hr/>
+  
+        <!-- Filtro de Pesquisa -->
+        <div class="form-group">
+            <div class="row">
+                <!-- Filtro por Nome -->
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control form-control-sm" placeholder="Pesquisar por nome" [(ngModel)]="filtroNome" />
+                </div>
+                
+                <!-- Filtro por Setor -->
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control form-control-sm" placeholder="Pesquisar por setor" [(ngModel)]="filtroSetor" />
+                </div>
+            </div>
+        </div>
+        
+  
+        <table class="table table-striped table-hover table-sm" *ngIf="produtos && produtos.length > 0">
+          <thead class="thead-light">
+            <tr>
+              <th>Nome</th>
+              <th>Valor</th>
+              <th>Setor</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let produto of produtosFiltrados()">
+              <td>{{ produto.nome }}</td>
+              <td>{{ produto.valor | number: '1.2-2' }}</td>
+              <td>{{ produto.setor }}</td>
+              <td>
+                <button type="button" class="btn btn-sm btn-outline-info" (click)="ExibirFormEditar(produto.id)">Editar</button>
+                <button type="button" class="btn btn-sm btn-outline-danger" (click)="DeletarProduto(produto.id)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<div class="container p-5" *ngIf="visibilidadeFormulario">
+    <div class="row">
+        <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+            <h6>{{tituloFormulario}}</h6>
+            <hr/>
+            <form [formGroup]="formulario" (ngSubmit)="EnviarForm()">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="nome"/>
+                    
+                    <label>Valor</label>
+                    <input type="number" class="form-control form-control-sm" formControlName="valor" step="0.01"/>
+                    
+                    <label>Setor</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="setor"/>
+                </div>
+
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">Salvar</button>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-sm btn-light" (click)="Voltar()">Voltar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

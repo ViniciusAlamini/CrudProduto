@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este projeto consiste em uma API REST desenvolvida em .NET integrada com um frontend em Angular. A aplicação permite realizar operações CRUD (Create, Read, Update, Delete) de produtos.
+Desenvolvi uma API .NET para um CRUD de produtos, com um frontend em Angular. Neste projeto, implementei uma interface e um repositório genérico, permitindo criar, ler, atualizar, e deletar produtos de forma simples e escalável. O uso do repositório genérico foi fundamental para abstrair operações de banco de dados e facilitar a manutenção do código.
 
 ## Pré-requisitos
 
@@ -16,46 +16,54 @@ Este projeto consiste em uma API REST desenvolvida em .NET integrada com um fron
 ### Backend (API)
 
 1. Clone o repositório:
-/// git clone https://github.com/usuario/nome-do-repositorio.git
+```bash
+git clone https://github.com/usuario/nome-do-repositorio.git
+```
 
 2. Acesse a pasta da API:
-/// cd nome-do-repositorio/CrudApi
+```bash
+ cd nome-do-repositorio/CrudApi
+```
 
 3. Execute a atualização do banco de dados:
-/// dotnet ef database update
+```bash
+ dotnet ef database update
+```
 
 4. Inicie a API:
-/// dotnet run
-
-A API estará disponível em: http://localhost:5000
+```bash
+ dotnet run
+```
 
 ### Frontend (Angular)
 
 1. Acesse a pasta do projeto Angular:
-/// cd ../AppAngular
+```bash
+ cd ../AppAngular
+```
 
 2. Instale as dependências:
-/// npm install
+```bash
+ npm install
+```
 
 3. Inicie a aplicação Angular:
-/// ng serve
+```bash
+ng serve
+```
 
 4. Acesse a aplicação no navegador:
-/// http://localhost:4200/Produtos
+```bash
+http://localhost:4200/Produtos
+```
 
 ## Possíveis erros
 
-### Erro de conexão com o banco de dados
-Verifique se o PostgreSQL está em execução e se as credenciais no arquivo de configuração estão corretas.
-
 ### Erro ao executar migrations
 Certifique-se de que o EF Core está instalado globalmente ou no projeto:
-/// dotnet tool install --global dotnet-ef
+```bash
+dotnet tool install --global dotnet-ef
+```
 
-### Erro de porta em uso
-Caso a porta já esteja em uso, você pode especificar uma porta diferente:
-- Para a API: /// dotnet run --urls=http://localhost:PORTA
-- Para o Angular: /// ng serve --port PORTA
-
-### Erro de módulos não encontrados
-Execute /// npm install novamente para garantir que todas as dependências estejam instaladas corretamente.
+### Erro ao executar  ng server i4.FocusTrapModule ou semelhante
+No arquivo tsconfig.json deve estar  "moduleResolution": "node",
